@@ -45,7 +45,8 @@
       display: flex;
       flex-direction: column;
       position: relative;
-      overflow: hidden;
+      overflow-y: auto;   /* 中身が多いページもスクロールで見切れないように */
+      overflow-x: hidden;
     }
     .page::before {
       content: "";
@@ -63,22 +64,23 @@
       display: flex;
       flex-direction: column;
       height: 100%;
+      padding-bottom: 60px; /* フッター分の余白を確保して下部が隠れないように */
     }
     .page-header {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
       margin-bottom: 8px;
     }
     .page-title {
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       font-weight: 700;
       line-height: 1.3;
       margin-bottom: 4px;
     }
     .page-subtitle {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #6b7280;
       margin-bottom: 14px;
     }
@@ -102,7 +104,7 @@
       color: var(--accent);
     }
     .section-label {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 600;
       color: var(--muted);
       text-transform: uppercase;
@@ -120,20 +122,20 @@
       min-width: 0;
       background: rgba(249, 250, 251, 0.9);
       border-radius: 18px;
-      padding: 8px 10px;
+      padding: 7px 9px;
       border: 1px solid var(--border);
     }
     .pill-title {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: #6b7280;
       margin-bottom: 2px;
     }
     .pill-value {
-      font-size: 0.9rem;
+      font-size: 0.86rem;
       font-weight: 600;
     }
     .note {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: #6b7280;
       margin-top: auto;
     }
@@ -177,7 +179,7 @@
     }
     .chip {
       border-radius: 16px;
-      padding: 10px;
+      padding: 9px 10px;
       border: 1px solid var(--border);
       background: rgba(249, 250, 251, 0.9);
     }
@@ -187,12 +189,12 @@
       margin-bottom: 2px;
     }
     .chip-value {
-      font-size: 0.85rem;
+      font-size: 0.83rem;
       font-weight: 600;
       margin-bottom: 2px;
     }
     .chip-sub {
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       color: #6b7280;
     }
     .matrix {
@@ -202,12 +204,12 @@
       font-size: 0.7rem;
       border-radius: 18px;
       border: 1px solid var(--border);
-      padding: 10px;
+      padding: 9px;
       background: rgba(249, 250, 251, 0.9);
       margin-bottom: 8px;
     }
     .matrix div {
-      padding: 3px 3px;
+      padding: 2px 3px;
     }
     .matrix-header {
       font-weight: 600;
@@ -238,11 +240,11 @@
       color: #1d4ed8;
     }
     .itinerary {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       display: grid;
       grid-template-columns: auto 1fr;
       column-gap: 10px;
-      row-gap: 6px;
+      row-gap: 5px;
       margin-bottom: 8px;
     }
     .itinerary-time {
@@ -254,24 +256,24 @@
     }
     .hotel-card {
       border-radius: 18px;
-      padding: 10px 12px;
+      padding: 9px 10px;
       background: rgba(249, 250, 251, 0.9);
       border: 1px solid var(--border);
       margin-bottom: 8px;
     }
     .hotel-name {
-      font-size: 0.9rem;
+      font-size: 0.86rem;
       font-weight: 600;
       margin-bottom: 2px;
     }
     .hotel-meta {
-      font-size: 0.75rem;
+      font-size: 0.73rem;
       color: #6b7280;
     }
     .budget-row {
       display: flex;
       justify-content: space-between;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       margin-top: 4px;
     }
     .budget-label {
@@ -281,11 +283,11 @@
       font-weight: 600;
     }
     .hint-list {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
     }
     .hint-list li::before {
       content: "• ";
@@ -305,7 +307,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: #6b7280;
       margin-bottom: 6px;
     }
@@ -390,19 +392,18 @@
           <p class="note">
             ※ここでの料金・時間は2025年11月時点の代表的なツアー例をもとにした目安です。実際に予約する際は各社サイトで最新情報を確認してください。
           </p>
-
-          <footer class="footer">
-            <div class="footer-dot"></div>
-            <div class="footer-pages">
-              <span class="is-active"></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            <div>Page 1 / 5</div>
-          </footer>
         </div>
+        <footer class="footer">
+          <div class="footer-dot"></div>
+          <div class="footer-pages">
+            <span class="is-active"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div>Page 1 / 5</div>
+        </footer>
       </section>
     </div>
 
@@ -464,19 +465,18 @@
           <p class="note">
             ※予算は「交通（JR or バス）＋宿泊＋リフト券（1日 or 2日）」がセットになった代表的なパックツアー料金からの概算です。
           </p>
-
-          <footer class="footer">
-            <div class="footer-dot"></div>
-            <div class="footer-pages">
-              <span></span>
-              <span class="is-active"></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            <div>Page 2 / 5</div>
-          </footer>
         </div>
+        <footer class="footer">
+          <div class="footer-dot"></div>
+          <div class="footer-pages">
+            <span></span>
+            <span class="is-active"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div>Page 2 / 5</div>
+        </footer>
       </section>
     </div>
 
@@ -568,19 +568,18 @@
           <p class="note">
             ポイント：現地集合型ツアー（東京は新幹線、関西は夜行バス）の商品を扱う旅行会社を選ぶと、予約が一括管理できて楽です。
           </p>
-
-          <footer class="footer">
-            <div class="footer-dot"></div>
-            <div class="footer-pages">
-              <span></span>
-              <span></span>
-              <span class="is-active"></span>
-              <span></span>
-              <span></span>
-            </div>
-            <div>Page 3 / 5</div>
-          </footer>
         </div>
+        <footer class="footer">
+          <div class="footer-dot"></div>
+          <div class="footer-pages">
+            <span></span>
+            <span></span>
+            <span class="is-active"></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div>Page 3 / 5</div>
+        </footer>
       </section>
     </div>
 
@@ -673,19 +672,18 @@
           <p class="note">
             ポイント：とにかく「移動少なめ＆オールインワン」を重視する場合に最適。ホテル前の緩斜面からスタートすれば初心者も安心です。
           </p>
-
-          <footer class="footer">
-            <div class="footer-dot"></div>
-            <div class="footer-pages">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span class="is-active"></span>
-              <span></span>
-            </div>
-            <div>Page 4 / 5</div>
-          </footer>
         </div>
+        <footer class="footer">
+          <div class="footer-dot"></div>
+          <div class="footer-pages">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span class="is-active"></span>
+            <span></span>
+          </div>
+          <div>Page 4 / 5</div>
+        </footer>
       </section>
     </div>
 
@@ -758,19 +756,18 @@
           <p class="note">
             まとめ：滑りの安心感重視なら志賀高原、コスパと移動の楽さ重視なら上越国際、チャレンジ＆景色重視なら白馬八方というイメージで検討すると選びやすいです。
           </p>
-
-          <footer class="footer">
-            <div class="footer-dot"></div>
-            <div class="footer-pages">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span class="is-active"></span>
-            </div>
-            <div>Page 5 / 5</div>
-          </footer>
         </div>
+        <footer class="footer">
+          <div class="footer-dot"></div>
+          <div class="footer-pages">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span class="is-active"></span>
+          </div>
+          <div>Page 5 / 5</div>
+        </footer>
       </section>
     </div>
   </main>
