@@ -1,775 +1,809 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <title>2026年1月24-25日 スノボ現地合流プラン</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026/1/24-25 スノボ1泊2日プラン比較</title>
   <style>
     :root {
-      --bg: #f5f5f7;
-      --card: #ffffff;
-      --accent: #0f766e;
-      --muted: #9ca3af;
+      --accent: #0077ff;
+      --accent-soft: rgba(0, 119, 255, 0.06);
+      --bg: #ffffff;
+      --bg-soft: #f5f5f7;
       --border: #e5e7eb;
-      --shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+      --muted: #6b7280;
+      --danger: #ef4444;
+      --ok: #10b981;
     }
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
-        sans-serif;
-      background: radial-gradient(circle at top, #e5f3ff 0, #f5f5f7 45%, #f5f5f7 100%);
-      color: #111827;
       -webkit-font-smoothing: antialiased;
     }
-    main {
-      padding: 24px 16px 48px;
-      max-width: 1200px;
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", sans-serif;
+      background: var(--bg-soft);
+      color: #111827;
+      line-height: 1.6;
+    }
+    .wrapper {
+      max-width: 900px;
       margin: 0 auto;
+      padding: 16px 12px 40px;
     }
-    .page-wrapper {
+    .section {
+      background: var(--bg);
+      border-radius: 18px;
+      padding: 20px 18px 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
+    }
+    @media (min-width: 768px) {
+      .section {
+        padding: 24px 24px 22px;
+        margin-bottom: 24px;
+      }
+      .wrapper {
+        padding: 24px 16px 48px;
+      }
+    }
+    .section-header {
       display: flex;
-      justify-content: center;
-      margin-bottom: 32px;
-    }
-    .page {
-      background: var(--card);
-      width: min(480px, 100vw - 32px);
-      aspect-ratio: 9 / 16; /* 9:16 縦長比率 */
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-      padding: 24px 22px;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow-y: auto;   /* 中身が多いページもスクロールで見切れないように */
-      overflow-x: hidden;
-    }
-    .page::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background:
-        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.08), transparent 55%),
-        radial-gradient(circle at 100% 10%, rgba(45, 212, 191, 0.08), transparent 52%);
-      opacity: 0.9;
-      pointer-events: none;
-    }
-    .page-inner {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      padding-bottom: 60px; /* フッター分の余白を確保して下部が隠れないように */
-    }
-    .page-header {
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-    .page-title {
-      font-size: 1.3rem;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      font-size: 1.05rem;
       font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: 4px;
     }
-    .page-subtitle {
-      font-size: 0.85rem;
-      color: #6b7280;
-      margin-bottom: 14px;
+    .section-header span.emoji {
+      font-size: 1.2rem;
     }
-    .badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 16px;
+    .sub {
+      font-size: 0.78rem;
+      color: var(--muted);
     }
     .badge {
-      font-size: 0.7rem;
-      padding: 4px 9px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.72rem;
+      padding: 2px 8px;
       border-radius: 999px;
       border: 1px solid var(--border);
+      color: var(--muted);
       background: #f9fafb;
-      backdrop-filter: blur(10px);
     }
-    .badge--accent {
-      border: none;
-      background: #ecfeff;
-      color: var(--accent);
+    .hero-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin: 4px 0 4px;
+      letter-spacing: 0.03em;
     }
-    .section-label {
-      font-size: 0.72rem;
+    .hero-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 12px;
+      margin: 8px 0 4px;
+    }
+    .hero-meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pill {
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #075985;
+      font-weight: 500;
+    }
+    .nav-chips {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 8px;
+      margin-top: 12px;
+      padding-bottom: 4px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .nav-chips::-webkit-scrollbar {
+      display: none;
+    }
+    .nav-chip {
+      flex: 0 0 auto;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: #111827;
+      text-decoration: none;
+      background: #f9fafb;
+    }
+    .nav-chip.primary {
+      border-color: rgba(37, 99, 235, 0.4);
+      background: rgba(59, 130, 246, 0.06);
+      color: #1d4ed8;
+      font-weight: 600;
+    }
+    .label {
+      font-size: 0.76rem;
       font-weight: 600;
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
+    }
+    .plan-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    @media (min-width: 720px) {
+      .plan-grid {
+        flex-direction: row;
+      }
+    }
+    .plan-card {
+      flex: 1;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #f9fafb;
+      padding: 10px 12px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .plan-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 2px;
+    }
+    .plan-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+    }
+    .tag {
+      font-size: 0.68rem;
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+    .tag-a { background: rgba(59,130,246,0.08); color:#1d4ed8; border-color: rgba(59,130,246,0.3);}
+    .tag-b { background: rgba(16,185,129,0.08); color:#047857; border-color: rgba(16,185,129,0.25);}
+    .tag-c { background: rgba(249,115,22,0.08); color:#c05621; border-color: rgba(249,115,22,0.35);}
+    .plan-point {
+      font-size: 0.8rem;
+      color: var(--muted);
     }
     .pill-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-    .pill {
-      flex: 1 1 45%;
-      min-width: 0;
-      background: rgba(249, 250, 251, 0.9);
-      border-radius: 18px;
-      padding: 7px 9px;
-      border: 1px solid var(--border);
-    }
-    .pill-title {
-      font-size: 0.72rem;
-      color: #6b7280;
-      margin-bottom: 2px;
-    }
-    .pill-value {
-      font-size: 0.86rem;
-      font-weight: 600;
-    }
-    .note {
-      font-size: 0.72rem;
-      color: #6b7280;
-      margin-top: auto;
-    }
-    .footer {
-      position: absolute;
-      bottom: 18px;
-      left: 22px;
-      right: 22px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.7rem;
-      color: #9ca3af;
-      z-index: 2;
-    }
-    .footer-dot {
-      width: 4px;
-      height: 4px;
-      border-radius: 999px;
-      background: #d1d5db;
-    }
-    .footer-pages {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .footer-pages span {
-      width: 16px;
-      height: 3px;
-      border-radius: 999px;
-      background: #e5e7eb;
-    }
-    .footer-pages span.is-active {
-      background: var(--accent);
-    }
-    .chip-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 1.1fr;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-    .chip {
-      border-radius: 16px;
-      padding: 9px 10px;
-      border: 1px solid var(--border);
-      background: rgba(249, 250, 251, 0.9);
-    }
-    .chip-label {
-      font-size: 0.7rem;
-      color: #6b7280;
-      margin-bottom: 2px;
-    }
-    .chip-value {
-      font-size: 0.83rem;
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-    .chip-sub {
-      font-size: 0.72rem;
-      color: #6b7280;
-    }
-    .matrix {
-      display: grid;
-      grid-template-columns: 1.4fr repeat(3, 1fr);
       gap: 6px;
-      font-size: 0.7rem;
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      padding: 9px;
-      background: rgba(249, 250, 251, 0.9);
-      margin-bottom: 8px;
-    }
-    .matrix div {
-      padding: 2px 3px;
-    }
-    .matrix-header {
-      font-weight: 600;
-      color: #6b7280;
-    }
-    .matrix-col-header {
-      text-align: center;
-      font-weight: 600;
-      color: #374151;
-    }
-    .matrix-label {
-      color: #6b7280;
-    }
-    .matrix-value {
-      text-align: center;
-    }
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 6px;
-    }
-    .tag {
-      font-size: 0.7rem;
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: #eff6ff;
-      color: #1d4ed8;
-    }
-    .itinerary {
-      font-size: 0.76rem;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      column-gap: 10px;
-      row-gap: 5px;
-      margin-bottom: 8px;
-    }
-    .itinerary-time {
-      color: #6b7280;
-      white-space: nowrap;
-    }
-    .itinerary-detail {
-      line-height: 1.4;
-    }
-    .hotel-card {
-      border-radius: 18px;
-      padding: 9px 10px;
-      background: rgba(249, 250, 251, 0.9);
-      border: 1px solid var(--border);
-      margin-bottom: 8px;
-    }
-    .hotel-name {
-      font-size: 0.86rem;
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-    .hotel-meta {
-      font-size: 0.73rem;
-      color: #6b7280;
-    }
-    .budget-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.78rem;
       margin-top: 4px;
     }
-    .budget-label {
-      color: #6b7280;
+    .small-pill {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: white;
+      border: 1px solid var(--border);
+      color: #374151;
     }
-    .budget-value {
+    .compare-table-wrap {
+      overflow-x: auto;
+      margin-top: 8px;
+      -webkit-overflow-scrolling: touch;
+    }
+    table.compare {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.78rem;
+      min-width: 640px;
+    }
+    table.compare th,
+    table.compare td {
+      padding: 6px 6px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+      white-space: nowrap;
+      vertical-align: top;
+    }
+    table.compare thead tr {
+      background: #f3f4f6;
+    }
+    table.compare th:first-child,
+    table.compare td:first-child {
+      position: sticky;
+      left: 0;
+      background: #f9fafb;
+      z-index: 1;
+      max-width: 130px;
+      white-space: normal;
+    }
+    table.compare th {
       font-weight: 600;
+      font-size: 0.78rem;
     }
-    .hint-list {
-      font-size: 0.76rem;
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-    .hint-list li::before {
-      content: "• ";
-      color: var(--accent);
-    }
-    .resort-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 2px;
-    }
-    .resort-sub {
+    .ok {
+      color: var(--ok);
+      font-weight: 600;
       font-size: 0.8rem;
-      color: #6b7280;
-      margin-bottom: 10px;
     }
-    .label-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.76rem;
-      color: #6b7280;
+    .warn {
+      color: #d97706;
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+    .ng {
+      color: var(--danger);
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+    .timeline {
+      border-left: 2px solid #e5e7eb;
+      padding-left: 10px;
+      margin: 8px 0 4px;
+    }
+    .timeline-item {
       margin-bottom: 6px;
+      position: relative;
     }
-    .label-dot {
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -11px;
+      top: 4px;
       width: 8px;
       height: 8px;
       border-radius: 999px;
-      background: var(--accent);
+      background: #2563eb;
     }
-    @media (max-width: 480px) {
-      main {
-        padding: 12px 8px 32px;
+    .time {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #111827;
+    }
+    .time-body {
+      font-size: 0.8rem;
+      margin-top: 1px;
+      color: #374151;
+    }
+    .note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+    ul {
+      padding-left: 1.2em;
+      margin: 4px 0 4px;
+    }
+    li {
+      font-size: 0.8rem;
+      margin-bottom: 2px;
+    }
+    .highlight-box {
+      margin-top: 6px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: #eff6ff;
+      border: 1px solid rgba(37, 99, 235, 0.25);
+      font-size: 0.78rem;
+      color: #1d4ed8;
+    }
+    .checklist-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    @media (min-width: 720px) {
+      .checklist-grid {
+        flex-direction: row;
       }
-      .page {
-        padding: 20px 18px;
-        border-radius: 24px;
-      }
+    }
+    .check-card {
+      flex: 1;
+      border-radius: 14px;
+      border: 1px dashed #d1d5db;
+      padding: 10px 12px;
+      background: #f9fafb;
+    }
+    .check-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .check-card ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    .check-card li::before {
+      content: "▢";
+      margin-right: 4px;
+      font-size: 0.72rem;
+      color: #9ca3af;
+    }
+    .footer-note {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    a {
+      color: #2563eb;
     }
   </style>
 </head>
 <body>
-  <main>
-    <!-- PAGE 1: Overview -->
-    <div class="page-wrapper">
-      <section class="page">
-        <div class="page-inner">
-          <div>
-            <div class="page-header">2026.01.24-25 / 1泊2日</div>
-            <h1 class="page-title">関西3名 × 関東1名<br />現地合流スノボ旅</h1>
-            <p class="page-subtitle">
-              土日をフル活用して、志賀高原・上越国際・白馬八方尾根の
-              3候補を比較したプラン集です。
-            </p>
-            <div class="badges">
-              <span class="badge badge--accent">初心者〜中級者 向け</span>
-              <span class="badge">関西発 3名</span>
-              <span class="badge">関東発 1名</span>
-              <span class="badge">現地集合 / 現地解散</span>
-            </div>
-
-            <div class="section-label">Quick choice</div>
-            <div class="chip-grid">
-              <div class="chip">
-                <div class="chip-label">総合おすすめ</div>
-                <div class="chip-value">志賀高原（全山エリア）</div>
-                <div class="chip-sub">
-                  初・中級コースが約8割のビッグゲレンデ。<br />
-                  初心者がいても全員で滑りやすいバランス型。
-                </div>
-              </div>
-              <div class="chip">
-                <div class="chip-label">アクセス & コスパ</div>
-                <div class="chip-value">上越国際スキー場</div>
-                <div class="chip-sub">
-                  関東は新幹線で約1.5時間＋駅直結。<br />
-                  パックツアーが比較的安く、初心者ゾーンも充実。
-                </div>
-              </div>
-            </div>
-
-            <div class="section-label">Trip outline</div>
-            <div class="pill-row">
-              <div class="pill">
-                <div class="pill-title">日程</div>
-                <div class="pill-value">1/24（土）〜 25（日）</div>
-              </div>
-              <div class="pill">
-                <div class="pill-title">宿泊</div>
-                <div class="pill-value">現地1泊（ホテル or 旅館）</div>
-              </div>
-              <div class="pill">
-                <div class="pill-title">移動イメージ</div>
-                <div class="pill-value">関東：JR新幹線 / 関西：夜行バス or JR</div>
-              </div>
-              <div class="pill">
-                <div class="pill-title">予算目安</div>
-                <div class="pill-value">3〜6万円 / 1人</div>
-              </div>
-            </div>
-          </div>
-
-          <p class="note">
-            ※ここでの料金・時間は2025年11月時点の代表的なツアー例をもとにした目安です。実際に予約する際は各社サイトで最新情報を確認してください。
-          </p>
+  <div class="wrapper">
+    <!-- HERO -->
+    <section class="section" id="top">
+      <div class="section-header">
+        <span class="emoji">🏂</span>
+        <div>2026/1/24(土)〜25(日) スノボ1泊2日プラン比較</div>
+      </div>
+      <div class="hero-title">関西3名＋関東1名・初心者〜中級者向け</div>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span class="pill">候補：白馬八方尾根 / 志賀高原 / 上越国際</span>
         </div>
-        <footer class="footer">
-          <div class="footer-dot"></div>
-          <div class="footer-pages">
-            <span class="is-active"></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div>Page 1 / 5</div>
-        </footer>
-      </section>
-    </div>
-
-    <!-- PAGE 2: Comparison -->
-    <div class="page-wrapper">
-      <section class="page">
-        <div class="page-inner">
-          <div>
-            <div class="page-header">Compare</div>
-            <h2 class="page-title">3ゲレンデざっくり比較</h2>
-            <p class="page-subtitle">
-              「アクセス」「滑りやすさ」「予算」の3軸で、志賀高原・上越国際・白馬八方尾根を俯瞰します。
-            </p>
-
-            <div class="matrix">
-              <div class="matrix-header"></div>
-              <div class="matrix-col-header">志賀高原</div>
-              <div class="matrix-col-header">上越国際</div>
-              <div class="matrix-col-header">白馬八方</div>
-
-              <div class="matrix-label">滑走レベル感</div>
-              <div class="matrix-value">初級46% / 中級40% / 上級14%</div>
-              <div class="matrix-value">広大 & 初心者ゾーンあり</div>
-              <div class="matrix-value">中〜上級中心で歯ごたえ強め</div>
-
-              <div class="matrix-label">初心者の滑りやすさ</div>
-              <div class="matrix-value">◎ ゲレンデが細かく分かれ安心</div>
-              <div class="matrix-value">◯ ホテル前はやさしい / 他は選び方注意</div>
-              <div class="matrix-value">△ 緩斜面は少なめ、スクール必須イメージ</div>
-
-              <div class="matrix-label">関東（東京）から</div>
-              <div class="matrix-value">新幹線約1.5h＋バス70〜90分</div>
-              <div class="matrix-value">上越新幹線約1.5h（駅直結）</div>
-              <div class="matrix-value">新幹線約1.5h＋バス約75分</div>
-
-              <div class="matrix-label">関西（大阪）から</div>
-              <div class="matrix-value">夜行バス多い / JR乗継も可</div>
-              <div class="matrix-value">夜行バス or JR＋乗継（約7h前後）</div>
-              <div class="matrix-value">夜行バス多数 / JR乗継で約5〜6h</div>
-
-              <div class="matrix-label">1泊2日 予算目安※</div>
-              <div class="matrix-value">関東：3.5〜7.5万円 / 関西：2.5〜4.5万円</div>
-              <div class="matrix-value">関東：1.8〜4.9万円 / 関西：2.5〜4万円</div>
-              <div class="matrix-value">関東：4.5〜8.5万円 / 関西：2.5〜5万円</div>
-
-              <div class="matrix-label">雰囲気</div>
-              <div class="matrix-value">日本最大級 / 雪質◎ / 落ち着いたリゾート</div>
-              <div class="matrix-value">ホテル一体型でコンパクトに楽しめる</div>
-              <div class="matrix-value">山のスケール＆景色が圧倒的</div>
-            </div>
-
-            <div class="tag-row">
-              <span class="tag">迷ったら：志賀高原</span>
-              <span class="tag">コスパ重視：上越国際</span>
-              <span class="tag">「本気ゲレンデ」体験：白馬八方</span>
-            </div>
-          </div>
-
-          <p class="note">
-            ※予算は「交通（JR or バス）＋宿泊＋リフト券（1日 or 2日）」がセットになった代表的なパックツアー料金からの概算です。
-          </p>
+        <div class="hero-meta-item">
+          <span class="badge">現地合流前提・レンタル利用想定</span>
         </div>
-        <footer class="footer">
-          <div class="footer-dot"></div>
-          <div class="footer-pages">
-            <span></span>
-            <span class="is-active"></span>
-            <span></span>
-            <span></span>
-            <span></span>
+      </div>
+      <div class="sub">※交通費・リフト券は2025-26シーズン公表料金・乗換案内を元にした「ざっくり目安」です。最新の時刻表・料金は必ず公式サイトで確認してください。</div>
+      <div class="nav-chips">
+        <a href="#summary" class="nav-chip primary">プラン概要＆ざっくり比較</a>
+        <a href="#plan-a" class="nav-chip">A 白馬八方尾根</a>
+        <a href="#plan-b" class="nav-chip">B 志賀高原</a>
+        <a href="#plan-c" class="nav-chip">C 上越国際</a>
+        <a href="#checklist" class="nav-chip">準備チェック</a>
+      </div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="section" id="summary">
+      <div class="section-header">
+        <span class="emoji">✨</span>
+        <div>まずは結論ざっくり</div>
+      </div>
+      <div class="label">おすすめ度</div>
+      <div class="plan-grid">
+        <div class="plan-card">
+          <div class="plan-title-row">
+            <div class="plan-title">A. 白馬八方尾根</div>
+            <span class="tag tag-a">景色重視・滑りごたえ◎</span>
           </div>
-          <div>Page 2 / 5</div>
-        </footer>
-      </section>
-    </div>
-
-    <!-- PAGE 3: Shiga Kogen Plan -->
-    <div class="page-wrapper">
-      <section class="page">
-        <div class="page-inner">
-          <div>
-            <div class="page-header">Plan A</div>
-            <h2 class="page-title">志賀高原オールラウンダープラン</h2>
-            <p class="page-subtitle">
-              初心者〜中級者が混在する4名の構成なら、まず一番バランスが良い選択。
-              コースの8割が初・中級なので、全員で滑りやすいエリアです。
-            </p>
-
-            <div class="label-pill">
-              <span class="label-dot"></span>
-              <span>集合場所：志賀高原「山の駅」付近のホテルロビー（例）</span>
-            </div>
-
-            <div class="chip-grid">
-              <div class="chip">
-                <div class="chip-label">関東（東京駅近辺）から</div>
-                <div class="chip-value">北陸新幹線＋志賀高原行きバス</div>
-                <div class="chip-sub">
-                  東京→長野：新幹線で約1時間30分<br />
-                  長野→志賀高原：急行バスで約70〜90分
-                </div>
-              </div>
-              <div class="chip">
-                <div class="chip-label">関西（大阪・京都）から</div>
-                <div class="chip-value">夜行バス or JR＋長野バス</div>
-                <div class="chip-sub">
-                  ・大阪・京都夜発の現地集合型バスツアー<br />
-                  ・もしくは新大阪→（JR）→長野＋バス
-                </div>
-              </div>
-            </div>
-
-            <div class="section-label">Sample itinerary</div>
-            <div class="itinerary">
-              <div class="itinerary-time">1/24（土）朝</div>
-              <div class="itinerary-detail">
-                関東：東京7:00頃発 → 10:00前後 志賀高原着<br />
-                関西：夜行バス利用なら早朝6〜7時頃に現地着
-              </div>
-
-              <div class="itinerary-time">1/24（土）日中</div>
-              <div class="itinerary-detail">
-                チェックイン前に荷物を預けて滑走開始。<br />
-                初心者は一の瀬・熊の湯などの優しいコースで足慣らし。
-              </div>
-
-              <div class="itinerary-time">1/24（土）夜</div>
-              <div class="itinerary-detail">
-                ホテルチェックイン＆温泉。夕食後はロビーで翌日のコース会議。
-              </div>
-
-              <div class="itinerary-time">1/25（日）午前</div>
-              <div class="itinerary-detail">
-                全員で初・中級コースを中心に滑走。<br />
-                中級者は少しロングコースにもチャレンジ。
-              </div>
-
-              <div class="itinerary-time">1/25（日）午後</div>
-              <div class="itinerary-detail">
-                15:00頃に切り上げて入浴＆着替え。<br />
-                関東：夕方のバス＋新幹線で東京へ。<br />
-                関西：夕方発の夜行バスで大阪・京都へ。
-              </div>
-            </div>
-
-            <div class="hotel-card">
-              <div class="hotel-name">宿泊イメージ：一の瀬・高天ヶ原エリアのゲレンデサイドホテル</div>
-              <div class="hotel-meta">
-                ・ゲレンデまで徒歩0〜3分<br />
-                ・大浴場 or 温泉つき<br />
-                ・2〜4名1室でゆったり休めるタイプを選ぶと◎
-              </div>
-              <div class="budget-row">
-                <div class="budget-label">予算感（1人）</div>
-                <div class="budget-value">
-                  関東：3.5〜7.5万円 / 関西：2.5〜4.5万円
-                </div>
-              </div>
-            </div>
+          <div class="plan-point">
+            ・最大級のスケールと絶景。<br>
+            ・移動時間はやや長め（両方とも約5時間前後）。<br>
+            ・初心者も滑れるが、コース選びに少しコツが必要。
           </div>
-
-          <p class="note">
-            ポイント：現地集合型ツアー（東京は新幹線、関西は夜行バス）の商品を扱う旅行会社を選ぶと、予約が一括管理できて楽です。
-          </p>
         </div>
-        <footer class="footer">
-          <div class="footer-dot"></div>
-          <div class="footer-pages">
-            <span></span>
-            <span></span>
-            <span class="is-active"></span>
-            <span></span>
-            <span></span>
+        <div class="plan-card">
+          <div class="plan-title-row">
+            <div class="plan-title">B. 志賀高原</div>
+            <span class="tag tag-b">バランス良 / 雪質◎ / 温泉◎</span>
           </div>
-          <div>Page 3 / 5</div>
-        </footer>
-      </section>
-    </div>
-
-    <!-- PAGE 4: Joetsu Kokusai Plan -->
-    <div class="page-wrapper">
-      <section class="page">
-        <div class="page-inner">
-          <div>
-            <div class="page-header">Plan B</div>
-            <h2 class="page-title">上越国際コスパ重視プラン</h2>
-            <p class="page-subtitle">
-              関東組のアクセスとパック料金の安さを重視するなら上越国際。
-              ホテル前の初心者ゲレンデと、6kmのロング初級コースが魅力です。
-            </p>
-
-            <div class="label-pill">
-              <span class="label-dot"></span>
-              <span>集合場所：上越国際スキー場前駅〜ホテルグリーンプラザ上越周辺</span>
-            </div>
-
-            <div class="chip-grid">
-              <div class="chip">
-                <div class="chip-label">関東（東京駅近辺）から</div>
-                <div class="chip-value">上越新幹線＋在来線</div>
-                <div class="chip-sub">
-                  東京→越後湯沢：新幹線で約1時間15分前後<br />
-                  越後湯沢→上越国際前：在来線で約10分（駅直結ゲレンデ）
-                </div>
-              </div>
-              <div class="chip">
-                <div class="chip-label">関西（大阪・京都）から</div>
-                <div class="chip-value">夜行バス or JR乗継</div>
-                <div class="chip-sub">
-                  ・関西発の上越国際行き夜行バスツアー（約7〜8時間）<br />
-                  ・もしくは新大阪→（JR）→越後湯沢＋在来線
-                </div>
-              </div>
-            </div>
-
-            <div class="section-label">Sample itinerary</div>
-            <div class="itinerary">
-              <div class="itinerary-time">1/24（土）朝</div>
-              <div class="itinerary-detail">
-                関東：東京7:00頃発 → 9:00〜9:30頃ゲレンデ着。<br />
-                関西：夜行バス利用で早朝6〜7時着。
-              </div>
-
-              <div class="itinerary-time">1/24（土）日中</div>
-              <div class="itinerary-detail">
-                初心者はホテル前ゲレンデや林間コースで練習。<br />
-                中級者はパノラマゾーンなど少し長めのコースへ。
-              </div>
-
-              <div class="itinerary-time">1/24（土）夜</div>
-              <div class="itinerary-detail">
-                ホテル内の温泉＆ディナーバイキングなど、<br />
-                「ゲレンデ一体型リゾート」感を満喫。
-              </div>
-
-              <div class="itinerary-time">1/25（日）午前</div>
-              <div class="itinerary-detail">
-                4人で6kmのロング初級コースにトライ。<br />
-                途中で写真スポットを挟みながらゆっくり滑走。
-              </div>
-
-              <div class="itinerary-time">1/25（日）午後</div>
-              <div class="itinerary-detail">
-                15:00頃撤収。<br />
-                関東：夕方の新幹線で東京18〜19時台着。<br />
-                関西：夕方〜夜発のバス or JRで大阪・京都へ。
-              </div>
-            </div>
-
-            <div class="hotel-card">
-              <div class="hotel-name">宿泊イメージ：ホテルグリーンプラザ上越 など</div>
-              <div class="hotel-meta">
-                ・ゲレンデ直結で移動ストレスが少ない<br />
-                ・初心者用エリアやキッズパークがホテル前に集中<br />
-                ・レストラン・売店・レンタルが館内に揃う
-              </div>
-              <div class="budget-row">
-                <div class="budget-label">予算感（1人）</div>
-                <div class="budget-value">
-                  関東：1.8〜4.9万円 / 関西：2.5〜4万円
-                </div>
-              </div>
-            </div>
+          <div class="plan-point">
+            ・関西・関東ともに約3.5時間圏内でバランス良し（車 or 新幹線＋バス）。<br>
+            ・標高が高く良質な雪、初心〜中級コースも多め。<br>
+            ・温泉・ホテルも充実で1泊2日にちょうど良い規模。
           </div>
-
-          <p class="note">
-            ポイント：とにかく「移動少なめ＆オールインワン」を重視する場合に最適。ホテル前の緩斜面からスタートすれば初心者も安心です。
-          </p>
         </div>
-        <footer class="footer">
-          <div class="footer-dot"></div>
-          <div class="footer-pages">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span class="is-active"></span>
-            <span></span>
+        <div class="plan-card">
+          <div class="plan-title-row">
+            <div class="plan-title">C. 上越国際</div>
+            <span class="tag tag-c">東京発有利 / コスパ◎</span>
           </div>
-          <div>Page 4 / 5</div>
-        </footer>
-      </section>
-    </div>
-
-    <!-- PAGE 5: Hakuba Happo Plan & Tips -->
-    <div class="page-wrapper">
-      <section class="page">
-        <div class="page-inner">
-          <div>
-            <div class="page-header">Plan C + Tips</div>
-            <h2 class="page-title">白馬八方チャレンジプラン</h2>
-            <p class="page-subtitle">
-              「一度は白馬八方で滑ってみたい！」という希望があるならこのプラン。
-              ただし全体的に中〜上級寄りなので、初心者にはスクール利用を前提にするのがおすすめです。
-            </p>
-
-            <div class="label-pill">
-              <span class="label-dot"></span>
-              <span>集合場所：八方バスターミナル or ゴンドラ「アダム」周辺</span>
-            </div>
-
-            <div class="chip-grid">
-              <div class="chip">
-                <div class="chip-label">関東（東京駅近辺）から</div>
-                <div class="chip-value">北陸新幹線＋白馬行きバス</div>
-                <div class="chip-sub">
-                  東京→長野：新幹線で約1時間30分<br />
-                  長野→白馬八方：特急バスで約75分（合計約3.5時間）
-                </div>
-              </div>
-              <div class="chip">
-                <div class="chip-label">関西（大阪・京都）から</div>
-                <div class="chip-value">夜行バス利用が現実的</div>
-                <div class="chip-sub">
-                  なんば・京都夜発 → 八方早朝着（約9時間前後）。<br />
-                  到着後すぐ滑れる分、睡眠時間は短めなので体力と相談。
-                </div>
-              </div>
-            </div>
-
-            <div class="section-label">How to use</div>
-            <ul class="hint-list">
-              <li>初心者は1日目午前はスキースクール／スノボレッスンに参加。</li>
-              <li>中級者はリーゼンコースなど少し難しめの斜面でしっかり滑走。</li>
-              <li>午後や2日目は、難易度の低いエリアを選んで合流滑走にする。</li>
-              <li>天候が悪い場合は、無理に山頂へ上がらず、中腹の緩やかな斜面中心に。</li>
-            </ul>
-
-            <div class="hotel-card" style="margin-top: 10px;">
-              <div class="hotel-name">宿泊イメージ：八方バスターミナル徒歩圏のホテル</div>
-              <div class="hotel-meta">
-                ・バスターミナル〜ゴンドラのシャトルバス利用で移動<br />
-                ・白馬の飲食店やバーにも出やすい立地を選ぶとナイトタイムも楽しい
-              </div>
-              <div class="budget-row">
-                <div class="budget-label">予算感（1人）</div>
-                <div class="budget-value">
-                  関東：4.5〜8.5万円 / 関西：2.5〜5万円（夜行バス利用時）
-                </div>
-              </div>
-            </div>
-
-            <div class="section-label" style="margin-top: 10px;">Booking tips</div>
-            <ul class="hint-list">
-              <li>「現地集合型」「出発地別」のワードでスキーツアー検索すると、東京はJR・新幹線、関西は夜行バスで同じ宿に泊まれる商品がヒットしやすいです。</li>
-              <li>4人とも同じ宿泊プラン（リフト券の有無・食事条件）に揃えておくと、現地での精算がシンプルになります。</li>
-              <li>1/24（土）〜25（日）はハイシーズン週末なので、できれば11〜12月中の早めの予約がおすすめです。</li>
-            </ul>
+          <div class="plan-point">
+            ・東京からは新幹線で約2時間と抜群のアクセス。<br>
+            ・関西からは移動費が高め（新幹線利用で片道約1.9万円）。<br>
+            ・初心〜中級向けエリアとナイターが充実。
           </div>
-
-          <p class="note">
-            まとめ：滑りの安心感重視なら志賀高原、コスパと移動の楽さ重視なら上越国際、チャレンジ＆景色重視なら白馬八方というイメージで検討すると選びやすいです。
-          </p>
         </div>
-        <footer class="footer">
-          <div class="footer-dot"></div>
-          <div class="footer-pages">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span class="is-active"></span>
+      </div>
+
+      <div class="highlight-box">
+        「移動バランス＋雪質＋温泉重視」なら<strong>B. 志賀高原</strong>が本命。<br>
+        「とにかく白馬で滑りたい」ならA、「東京発メンバーの楽さ＆コスパ重視」ならCが候補になります。
+      </div>
+    </section>
+
+    <!-- COMPARE TABLE -->
+    <section class="section" id="compare">
+      <div class="section-header">
+        <span class="emoji">📊</span>
+        <div>3プラン比較表</div>
+      </div>
+      <div class="compare-table-wrap">
+        <table class="compare">
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th>A. 白馬八方尾根</th>
+              <th>B. 志賀高原</th>
+              <th>C. 上越国際</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>関西から</td>
+              <td>
+                ・大阪→白馬駅：電車で約5.5〜7時間／片道約1.1〜1.3万円<br>
+                ・スキーツアーバスや飛行機利用ツアーもあり
+              </td>
+              <td>
+                ・大阪→志賀高原（車）：高速利用で約3.5時間（約455km）<br>
+                ・新幹線＋バスのJRツアーもあり
+              </td>
+              <td>
+                ・大阪→上越国際スキー場前：新幹線乗継で約4時間50分／片道約1.9万円
+              </td>
+            </tr>
+            <tr>
+              <td>関東から</td>
+              <td>
+                ・東京→白馬：電車で約4〜5時間／片道約1.0〜1.2万円<br>
+                ・直行高速バス：片道約5〜6.5時間／約4,000〜5,500円
+              </td>
+              <td>
+                ・東京→長野（新幹線約1時間35分）＋志賀高原行き急行バス約1時間20分<br>
+                ・合計約3.5時間
+              </td>
+              <td>
+                ・東京→上越国際スキー場前：上越新幹線＋在来線で約1時間50分／片道約6,600円
+              </td>
+            </tr>
+            <tr>
+              <td>リフト1日券(大人)</td>
+              <td>約8,700円（2025-26シーズン・八方尾根）</td>
+              <td>約7,000円（志賀高原共通券）</td>
+              <td>約5,500円（上越国際）</td>
+            </tr>
+            <tr>
+              <td>初心者の滑りやすさ</td>
+              <td>中級寄り。初心者コースもあるがエリア選びが重要</td>
+              <td>初心〜中級コースが豊富で分散。混雑も比較的マイルド</td>
+              <td>ホテル前の緩斜面など初心〜中級向けゾーンが多く安心</td>
+            </tr>
+            <tr>
+              <td>雪質</td>
+              <td>北アルプスの良質パウダー。標高も高め</td>
+              <td>標高が高くシーズンを通して安定した雪質</td>
+              <td>日本海側の降雪が多いエリア。コンディションはやや日による</td>
+            </tr>
+            <tr>
+              <td>温泉・宿の雰囲気</td>
+              <td>白馬村の温泉・飲食店が充実。インバウンド感強め</td>
+              <td>老舗ホテル〜ペンションまで多彩。温泉も多い</td>
+              <td>ゲレンデ直結の大型ホテル中心で便利＆リゾート感</td>
+            </tr>
+            <tr>
+              <td>総予算目安（1人）</td>
+              <td>
+                関西発：5.0〜7.0万円<br>
+                関東発：4.0〜6.0万円
+              </td>
+              <td>
+                関西発：4.0〜6.0万円<br>
+                関東発：3.8〜5.5万円
+              </td>
+              <td>
+                関西発：5.5〜8.0万円<br>
+                関東発：3.5〜5.0万円
+              </td>
+            </tr>
+            <tr>
+              <td>グループ4人でのバランス</td>
+              <td><span class="warn">◎ 白馬に行きたいならベストだが移動はやや長め</span></td>
+              <td><span class="ok">◎◎ 双方からの移動時間とコスパのバランスが良い</span></td>
+              <td><span class="warn">○ 東京発には最適だが、関西勢がやや割高</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="footer-note">
+        ※予算は「往復交通費＋1泊2食付き宿泊＋リフト券1.5〜2日分＋レンタル＋食事・雑費」をざっくり見積もったものです。<br>
+        ※繁忙期料金・早割・ツアー利用などで大きく変動します。
+      </p>
+    </section>
+
+    <!-- PLAN A -->
+    <section class="section" id="plan-a">
+      <div class="section-header">
+        <span class="emoji">🏔️</span>
+        <div>A. 白馬八方尾根プラン（景色＆スケール重視）</div>
+      </div>
+      <div class="sub">
+        「せっかくなら白馬で滑りたい」「絶景＋本格的な雰囲気を味わいたい」方向け。
+      </div>
+
+      <div class="label">移動イメージ</div>
+      <div class="plan-grid">
+        <div class="plan-card">
+          <div class="plan-title-row">
+            <div class="plan-title">関西3名</div>
           </div>
-          <div>Page 5 / 5</div>
-        </footer>
-      </section>
-    </div>
-  </main>
+          <ul>
+            <li>【電車】大阪→（新大阪）→名古屋/長野経由→白馬駅（約5.5〜7時間）</li>
+            <li>【ツアーバス】関西発の白馬行き夜行バス＋ホテルのセットツアーも多数</li>
+            <li>【車】大阪から中央道・長野道経由で約6時間前後（冬装備必須）</li>
+          </ul>
+          <div class="note">移動時間が長いので、夜行バス＋早朝着 or 前泊プランにすると楽です。</div>
+        </div>
+        <div class="plan-card">
+          <div class="plan-title-row">
+            <div class="plan-title">関東1名</div>
+          </div>
+          <ul>
+            <li>【電車】東京→（長野・松本など経由）→白馬駅（約4〜5時間）</li>
+            <li>【高速バス】バスタ新宿などから白馬八方BT行き直行バス（約6時間前後）</li>
+          </ul>
+          <div class="note">コスパ重視なら高速バス、快適さ重視なら電車＋特急。</div>
+        </div>
+      </div>
+
+      <div class="label">現地合流の1泊2日スケジュール例</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="time">DAY1 朝〜昼</div>
+          <div class="time-body">
+            ・関西組：夜行バスの場合は朝〜午前中に白馬着。電車なら朝発〜昼前着。<br>
+            ・関東組：朝発の電車 or 高速バスでお昼前〜13時ごろ白馬着。<br>
+            ・11:30〜12:00頃：白馬八方バスターミナル or 宿のロビーで合流。
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">DAY1 午後</div>
+          <div class="time-body">
+            ・レンタル（板＋ブーツ＋ウェア）を借りて、半日券で軽く足慣らし。<br>
+            ・初心者は咲花・白樺などの緩斜面、中級者はゴンドラで中腹へ。
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">DAY1 夜</div>
+          <div class="time-body">
+            ・温泉付き宿ならゆっくり湯船で疲れをリセット。<br>
+            ・白馬の居酒屋やレストランで夕食（外国人客も多く国際的な雰囲気）。
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">DAY2 終日</div>
+          <div class="time-body">
+            ・八方尾根でメインの滑走日。天気が良ければ山頂付近まで行って絶景を楽しむ。<br>
+            ・15〜16時ごろにはレンタル返却＆着替え → 各自帰路へ。
+          </div>
+        </div>
+      </div>
+      <div class="label">このプランのポイント</div>
+      <ul>
+        <li>・ゲレンデ規模が大きく、滑りごたえは3候補の中でトップ。</li>
+        <li>・初心者はローカルスクールのレッスンを入れると安心（特にDAY1）。</li>
+        <li>・移動時間が長めなので、体力に余裕を持ったスケジュール設計が必要。</li>
+      </ul>
+    </section>
+
+    <!-- PLAN B -->
+    <section class="section" id="plan-b">
+      <div class="section-header">
+        <span class="emoji">⛷️</span>
+        <div>B. 志賀高原プラン（バランス＆雪質＆温泉本命）</div>
+      </div>
+      <div class="sub">
+        関西・関東どちらからも「そこそこ近く」、雪質・コースバリエーション・温泉のバランスが良い王道プランです。
+      </div>
+
+      <div class="label">移動イメージ</div>
+      <div class="plan-grid">
+        <div class="plan-card">
+          <div class="plan-title-row">
+            <div class="plan-title">関西3名</div>
+          </div>
+          <ul>
+            <li>【車】大阪→（名神・中央道・長野道・上信越道）→信州中野IC→志賀高原<br>所要約3.5時間（公式目安）</li>
+            <li>【JR＋宿泊】新大阪から長野方面へのJR＋ホテルパックもあり</li>
+          </ul>
+          <div class="note">雪道運転に不安があれば、JR＋送迎バス付きの宿泊パックが安全です。</div>
+        </div>
+        <div class="plan-card">
+          <div class="plan-title-row">
+            <div class="plan-title">関東1名</div>
+          </div>
+          <ul>
+            <li>【新幹線＋バス】東京→長野（北陸新幹線 約1時間35分）<br>＋長野駅→志賀高原（急行バス 約1時間20分）</li>
+            <li>【直行バス】東京駅発の夜行バス「雪物語」など、志賀高原行き高速バスも運行</li>
+          </ul>
+          <div class="note">
+            新幹線＋バスで約3.5時間。夜行バスを使えば初日朝からガッツリ滑れます。
+          </div>
+        </div>
+      </div>
+
+      <div class="label">現地合流の1泊2日スケジュール例</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="time">DAY1 朝〜昼</div>
+          <div class="time-body">
+            ・関西組：早朝に大阪出発（車）→11時前後に志賀高原着。<br>
+            ・関東組：東京8時台の新幹線に乗車 → 長野駅でバス乗換 → 11時〜12時頃に志賀高原着。<br>
+            ・11:30〜12:00頃：宿のロビーでチェックイン前に合流（荷物だけ預ける）。
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">DAY1 午後</div>
+          <div class="time-body">
+            ・レンタル手続き後、近場のファミリー向けゲレンデで足慣らし（約3〜4時間）。<br>
+            ・初心者は一の瀬や焼額山の緩斜面、中級者は隣接エリアへ足を伸ばすイメージ。
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">DAY1 夜</div>
+          <div class="time-body">
+            ・宿の温泉でゆっくり温まってから夕食。<br>
+            ・ラウンジや部屋で翌日のコース相談＆撮った写真の共有タイム。
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">DAY2 終日</div>
+          <div class="time-body">
+            ・志賀高原共通券で、メインの一の瀬・焼額山・高天ヶ原などを中心に滑走。<br>
+            ・15〜16時：レンタル返却＆入浴 → 16〜17時頃発で各自帰宅。
+          </div>
+        </div>
+      </div>
+
+      <div class="label">予算感（大人1人あたり・ざっくり）</div>
+      <ul>
+        <li>・リフト券：2日券約13,500円（志賀高原共通）</li>
+        <li>・レンタル（板＋ブーツ＋ウェア）：1日あたり4,000〜6,000円 ×2日</li>
+        <li>・宿泊：ゲレンデ近くの旅館・ホテルで1泊2食 12,000〜20,000円程度</li>
+        <li>・交通費：<br>
+          └ 関西：車なら高速代＋ガソリンを割り勘（4人車割で1人1.0〜1.5万円イメージ）<br>
+          └ 関東：新幹線＋バス往復で約2.0〜2.5万円</li>
+      </ul>
+      <div class="highlight-box">
+        4人とも「移動時間3〜4時間」「雪質良し」「温泉あり」を両立できるので、<br>
+        全員の満足度のバランスを考えると<strong>最有力候補プラン</strong>です。
+      </div>
+    </section>
+
+    <!-- PLAN C -->
+    <section class="section" id="plan-c">
+      <div class="section-header">
+        <span class="emoji">🌃</span>
+        <div>C. 上越国際プラン（東京発有利・ナイター＆コスパ）</div>
+      </div>
+      <div class="sub">
+        東京発メンバーがとにかく楽＆コスパ良く、初心〜中級者でも安心して滑りやすいゲレンデ構成。関西組は移動費がやや高くなる点がポイントです。
+      </div>
+
+      <div class="label">移動イメージ</div>
+      <div class="plan-grid">
+        <div class="plan-card">
+          <div class="plan-title-row">
+            <div class="plan-title">関西3名</div>
+          </div>
+          <ul>
+            <li>【新幹線】大阪→新大阪→東京→越後湯沢→上越国際スキー場前<br>
+              ・所要：約4時間50分／片道約18,800円前後</li>
+            <li>【夜行バス＋ツアー】関西発の新潟エリア行きバスツアーも要チェック</li>
+          </ul>
+          <div class="note">
+            JR単体だと交通費がかなり高めなので、「関西発バスツアー＋宿泊」のセット商品を探すのがおすすめです。
+          </div>
+        </div>
+        <div class="plan-card">
+          <div class="plan-title-row">
+            <div class="plan-title">関東1名</div>
+          </div>
+          <ul>
+            <li>【新幹線】東京→越後湯沢（上越新幹線 約1時間20分）<br>
+              ＋在来線で上越国際スキー場前へ（合計約1時間50分／片道約6,600円）</li>
+            <li>【高速バス】東京→越後湯沢方面の高速バス＋ローカル線の組み合わせも可</li>
+          </ul>
+          <div class="note">
+            朝8時台に東京発でも、10時半〜11時頃には滑り始められるイメージです。
+          </div>
+        </div>
+      </div>
+
+      <div class="label">現地合流の1泊2日スケジュール例</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="time">DAY1 朝〜昼</div>
+          <div class="time-body">
+            ・関西組：朝の新幹線で移動 → 11時〜12時頃に上越国際着。<br>
+            ・関東組：9時前後に東京発 → 11時前後に上越国際着。<br>
+            ・11:30頃：ホテルグリーンプラザ上越付近で合流・チェックイン（荷物預け）。
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">DAY1 午後〜ナイター</div>
+          <div class="time-body">
+            ・レンタル後、マザーズゾーンなどの初心者向けエリアで足慣らし。<br>
+            ・体力と天候が良ければナイター（〜21時）も少しだけ楽しむ。
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">DAY2 終日</div>
+          <div class="time-body">
+            ・初級〜中級コース中心に、フォレスト／パノラマなど他ゾーンへ。<br>
+            ・15時頃には撤収して入浴 → 16〜17時頃の電車で各自帰路へ。
+          </div>
+        </div>
+      </div>
+
+      <div class="label">予算感（大人1人あたり・ざっくり）</div>
+      <ul>
+        <li>・リフト券：1日券約5,500円 ×2日ぶん想定</li>
+        <li>・レンタル：1日あたり4,000〜6,000円 ×2日</li>
+        <li>・宿泊：ゲレンデ直結ホテル1泊2食 13,000〜22,000円程度</li>
+        <li>・交通費：<br>
+          └ 関西：新幹線往復で約3.7万円（ツアー利用で抑えたい）<br>
+          └ 関東：新幹線＋在来線往復で約1.3万円前後</li>
+      </ul>
+      <div class="highlight-box">
+        東京発メンバーの「気軽さ・時間効率」はダントツ。<br>
+        ただし関西発メンバーの交通費が嵩むので、<strong>全体コスパ重視ならツアー利用前提で検討</strong>するのがおすすめです。
+      </div>
+    </section>
+
+    <!-- CHECKLIST -->
+    <section class="section" id="checklist">
+      <div class="section-header">
+        <span class="emoji">📝</span>
+        <div>最後に：準備チェック</div>
+      </div>
+      <div class="sub">
+        具体的な予約に進むときの「抜け漏れ防止メモ」です。スクショして共有しやすいようにざっくり整理しています。
+      </div>
+
+      <div class="checklist-grid">
+        <div class="check-card">
+          <div class="check-title">共通で決めておきたいこと</div>
+          <ul>
+            <li>行き先（A：白馬八方 / B：志賀高原 / C：上越国際）</li>
+            <li>移動手段（車 / 新幹線＋バス / ツアーバス）</li>
+            <li>宿の場所（ゲレンデ直結 or バス停近く etc.）</li>
+            <li>リフト券の種類（1.5日分 / 2日券 など）</li>
+            <li>レンタル内容（板・ブーツ・ウェア・小物の有無）</li>
+            <li>スノボレッスンを受ける人・時間帯</li>
+          </ul>
+        </div>
+        <div class="check-card">
+          <div class="check-title">個人で準備するもの</div>
+          <ul>
+            <li>ゴーグル・グローブ・ニット帽（レンタルより購入推奨）</li>
+            <li>ネックウォーマー・厚手ソックス・インナー類</li>
+            <li>保険（スキー・スノボ対応の国内旅行保険）</li>
+            <li>モバイルバッテリー・防水スマホケース</li>
+            <li>現金（山の中でキャッシュレス非対応の店もあり）</li>
+          </ul>
+        </div>
+        <div class="check-card">
+          <div class="check-title">日程が近づいたら確認</div>
+          <ul>
+            <li>各スキー場の積雪・リフト運行状況</li>
+            <li>当日の天気予報・気温（特に志賀高原は冷え込み強め）</li>
+            <li>高速道路や山道の通行規制情報</li>
+            <li>集合場所・時間（バスターミナル or 宿ロビーなど）</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="footer-note">
+        このページは2025-26シーズンの情報を元にしたプラン案です。<br>
+        実際に予約する際は、各スキー場・宿泊施設・交通機関・ツアー会社の最新情報をご確認ください。
+      </p>
+    </section>
+  </div>
 </body>
 </html>
