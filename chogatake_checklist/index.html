@@ -1,1 +1,601 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6/20〜21 蝶ヶ岳（蝶ヶ岳ヒュッテ泊）</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;600&display=swap');
 
+  :root {
+    --ink: #1a1a2e;
+    --mist: #e8eef4;
+    --sky: #4a7fa5;
+    --snow: #f5f8fb;
+    --accent: #2d6a9f;
+    --warn: #c0392b;
+    --sage: #5a8a6a;
+    --light-warn: #fdf3f2;
+    --light-sage: #f2f7f4;
+    --border: #d0dce8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--snow);
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  .hero {
+    background: linear-gradient(160deg, #1a2f4a 0%, #2d6a9f 60%, #4a9fd4 100%);
+    color: white;
+    padding: 2.5rem 1.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 60px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60'%3E%3Cpath fill='%23f5f8fb' d='M0,40 L120,20 L240,35 L360,10 L480,28 L600,5 L720,22 L840,8 L960,30 L1080,12 L1200,25 L1320,15 L1440,30 L1440,60 L0,60Z'/%3E%3C/svg%3E") no-repeat bottom/cover;
+  }
+
+  .hero-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 0.4rem;
+  }
+
+  .hero h1 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.9rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-sub {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+  }
+
+  .alert-banner {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    backdrop-filter: blur(4px);
+  }
+
+  .alert-banner strong { font-weight: 700; }
+
+  .progress-bar-wrap {
+    margin-top: 1.2rem;
+  }
+
+  .progress-label {
+    font-size: 0.75rem;
+    opacity: 0.8;
+    margin-bottom: 0.3rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .progress-bar {
+    background: rgba(255,255,255,0.2);
+    border-radius: 99px;
+    height: 6px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    background: #7ecfff;
+    height: 100%;
+    border-radius: 99px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  .content {
+    padding: 1.5rem 1rem 3rem;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .section {
+    margin-bottom: 1.8rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--accent);
+  }
+
+  .section-icon {
+    font-size: 1.1rem;
+  }
+
+  .section-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .subsection {
+    margin-bottom: 1rem;
+  }
+
+  .subsection-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #7a9ab5;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    padding-left: 0.2rem;
+  }
+
+  .item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    margin-bottom: 0.3rem;
+    transition: background 0.2s;
+    cursor: pointer;
+    background: white;
+    border: 1px solid var(--border);
+  }
+
+  .item:hover { background: var(--mist); }
+
+  .item.checked {
+    background: #eef5ee;
+    border-color: #a8c9a8;
+    opacity: 0.7;
+  }
+
+  .item.warn-item {
+    background: var(--light-warn);
+    border-color: #e8b4b0;
+  }
+
+  .item.warn-item:hover { background: #fae8e6; }
+
+  .checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .item.checked .checkbox {
+    background: var(--sage);
+    border-color: var(--sage);
+    color: white;
+    font-size: 0.65rem;
+  }
+
+  .item-text {
+    flex: 1;
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .item.checked .item-text {
+    text-decoration: line-through;
+    color: #8aab8a;
+  }
+
+  .item-note {
+    font-size: 0.72rem;
+    color: #7a8a9a;
+    margin-top: 0.15rem;
+    display: block;
+    line-height: 1.5;
+  }
+
+  .item-warn-note {
+    font-size: 0.72rem;
+    color: var(--warn);
+    margin-top: 0.15rem;
+    display: block;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  .item-new-badge {
+    font-size: 0.6rem;
+    background: var(--accent);
+    color: white;
+    padding: 0.1rem 0.4rem;
+    border-radius: 99px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .yamap-link {
+    display: block;
+    background: var(--accent);
+    color: white;
+    text-align: center;
+    padding: 0.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .yamap-link:hover { background: #1d5a8a; }
+
+  .warn-box {
+    background: var(--light-warn);
+    border: 1px solid #e8b4b0;
+    border-left: 4px solid var(--warn);
+    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    font-size: 0.78rem;
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+    color: #5a2020;
+  }
+
+  .warn-box strong { font-weight: 700; color: var(--warn); }
+
+  .info-box {
+    background: var(--light-sage);
+    border: 1px solid #a8c9a8;
+    border-left: 4px solid var(--sage);
+    border-radius: 6px;
+    padding: 0.8rem 1rem;
+    font-size: 0.78rem;
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+    color: #2a4a2a;
+  }
+
+  .reset-btn {
+    display: block;
+    width: 100%;
+    padding: 0.7rem;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.8rem;
+    color: #7a8a9a;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    font-family: inherit;
+  }
+
+  .reset-btn:hover { background: var(--mist); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-label">登山装備チェックリスト</div>
+  <h1>蝶ヶ岳<br>蝶ヶ岳ヒュッテ泊</h1>
+  <div class="hero-sub">2025年 6月20日（金）〜21日（土）</div>
+  <div class="alert-banner">
+    ⚠️ <strong>朝晩は5℃以下を想定。</strong>防寒着は必携。出発前に天気予報を必ず確認。
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-label">
+      <span>準備の進捗</span>
+      <span id="progress-text">0 / 0 チェック済み</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  </div>
+</div>
+
+<div class="content">
+
+  <a class="yamap-link" href="https://yamap.com/plans/code/V3aDgBRVCcvlGaZkQlGk2ER5ddGJTCHGk4BFJqIyq1TZsqaxl5xpqNP8CcvRTT_qHFs" target="_blank">📍 YAMAPプランを開く（事前ダウンロード推奨）</a>
+
+  <!-- 服装 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">👕</span>
+      <span class="section-title">服装 — 上</span>
+    </div>
+
+    <div class="item" onclick="toggle(this)">
+      <div class="checkbox"></div>
+      <div class="item-text">半袖Tシャツ
+        <span class="item-note">ウールor化繊。コットンNG</span>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="checkbox"></div>
+      <div class="item-text">長袖Tシャツ or シャツ（推奨）
+        <span class="item-note">ウールor化繊。コットンNG</span>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="checkbox"></div>
+      <div class="item-text">帽子
+        <span class="item-note">頭皮日焼け防止・疲労軽減</span>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="checkbox"></div>
+      <div class="item-text">手ぬぐい / タオル</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">👖</span>
+      <span class="section-title">服装 — 下</span>
+    </div>
+
+    <div class="item" onclick="toggle(this)">
+      <div class="checkbox"></div>
+      <div class="item-text">長ズボン or 半ズボン
+        <span class="item-note">ウールor化繊。コットンNG</span>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="checkbox"></div>
+      <div class="item-text">防寒用の長ズボン
+        <span class="item-note">半ズボンで登る場合、朝晩用に別途必要</span>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="checkbox"></div>
+      <div class="item-text">くるぶし以上の靴下</div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="checkbox"></div>
+      <div class="item-text">靴（登山靴推奨）
+        <span class="item-note">グリップの効くもの。スニーカーNG。濡れた岩に注意</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ザック必須 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">🎒</span>
+      <span class="section-title">ザックの中身 — 必須</span>
+    </div>
+
+    <div class="warn-box">
+      朝晩の気温は<strong>5℃以下</strong>を想定。6月20日は梅雨前線の影響を受けやすく、天気の急変に要注意。出発前に直近の天気予報を必ず確認。
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">☁️ 防寒・雨対策</div>
+
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"></div>
+        <div class="item-text">防寒着（ダウン等）
+          <span class="item-note">ユニクロのウルトラライトダウンとかでOK</span>
+        </div>
+      </div>
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"></div>
+        <div class="item-text">ウィンドシェル / カッパ
+          <span class="item-note">雨風を防ぐ防水防風素材。カッパでもOK。100均の薄いカッパはNG</span>
+        </div>
+      </div>
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"></div>
+        <div class="item-text">手袋（薄手）
+          <span class="item-note">稜線上は体感温度が低い</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">🥾 行動用品</div>
+
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"></div>
+        <div class="item-text">モバイルバッテリー</div>
+      </div>
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"></div>
+        <div class="item-text">水分（500ml × 3〜4本）
+          <span class="item-note">2日目は山小屋で調達。登りのコースタイムによっては増量検討</span>
+        </div>
+      </div>
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"></div>
+        <div class="item-text">行動食
+          <span class="item-note">柿ピーが最強。塩分・糖分それぞれ補給できるもの</span>
+        </div>
+      </div>
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"></div>
+        <div class="item-text">1日目の昼食
+          <span class="item-note">軽め・食べやすいもの。山小屋の食事で代用も可</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">🩹 医療・応急</div>
+
+      <div class="item warn-item" onclick="toggle(this)">
+        <div class="checkbox"></div>
+        <div class="item-text">頭痛薬（ロキソニン等）
+          <span class="item-warn-note">⚠️「高山病の治療薬」ではありません。あくまで頭痛の緩和用。高山病の対処は休憩・ゆっくり高度順応・必要なら下山。</span>
+          <span class="item-note">イブプロフェン（バファリンプレミアム等）でも可</span>
+        </div>
+      </div>
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"></div>
+        <div class="item-text">常備薬</div>
+      </div>
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"></div>
+        <div class="item-text">ファーストエイド
+          <span class="item-note">絆創膏、膝テーピング等</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">👚 衣類・洗面</div>
+
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"></div>
+        <div class="item-text">替えの半袖Tシャツ</div>
+      </div>
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"></div>
+        <div class="item-text">替えの靴下</div>
+      </div>
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"></div>
+        <div class="item-text">下山後の着替え（風呂上がり用）</div>
+      </div>
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"></div>
+        <div class="item-text">歯ブラシ
+          <span class="item-note">⚠️ 山小屋では歯磨き粉使用不可</span>
+        </div>
+      </div>
+      <div class="item" onclick="toggle(this)">
+        <div class="checkbox"></div>
+        <div class="item-text">折り畳み傘</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- あれば尚良い -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">⭐</span>
+      <span class="section-title">あれば尚良い</span>
+    </div>
+
+    <div class="item" onclick="toggle(this)">
+      <div class="checkbox"></div>
+      <div class="item-text">トレッキングポール
+        <span class="item-note">ぬかるみでのバランス保持に有効</span>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="checkbox"></div>
+      <div class="item-text">サングラス
+        <span class="item-note">稜線上はほんまに眩しい</span>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="checkbox"></div>
+      <div class="item-text">ヘッドライト
+        <span class="item-note">早朝行動・夜の星空撮影に</span>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="checkbox"></div>
+      <div class="item-text">日焼け止め</div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="checkbox"></div>
+      <div class="item-text">替えの長袖Tシャツ or シャツ
+        <span class="item-note">ウールor化繊。コットンNG</span>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="checkbox"></div>
+      <div class="item-text">替えの手ぬぐい / タオル</div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="checkbox"></div>
+      <div class="item-text">替えの下着
+        <span class="item-note">着替えスペースはほぼ無い</span>
+      </div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="checkbox"></div>
+      <div class="item-text">山小屋到着後のおやつ</div>
+    </div>
+  </div>
+
+  <!-- 趣味用 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-icon">📷</span>
+      <span class="section-title">趣味用（カメラ）</span>
+    </div>
+
+    <div class="item" onclick="toggle(this)">
+      <div class="checkbox"></div>
+      <div class="item-text">カメラ本体</div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="checkbox"></div>
+      <div class="item-text">レンズ</div>
+    </div>
+    <div class="item" onclick="toggle(this)">
+      <div class="checkbox"></div>
+      <div class="item-text">三脚</div>
+    </div>
+  </div>
+
+  <button class="reset-btn" onclick="resetAll()">✕ チェックをすべてリセット</button>
+
+</div>
+
+<script>
+  function toggle(el) {
+    el.classList.toggle('checked');
+    const cb = el.querySelector('.checkbox');
+    cb.textContent = el.classList.contains('checked') ? '✓' : '';
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const all = document.querySelectorAll('.item');
+    const checked = document.querySelectorAll('.item.checked');
+    const pct = all.length ? (checked.length / all.length * 100) : 0;
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-text').textContent = `${checked.length} / ${all.length} チェック済み`;
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.item').forEach(el => {
+      el.classList.remove('checked');
+      el.querySelector('.checkbox').textContent = '';
+    });
+    updateProgress();
+  }
+
+  updateProgress();
+</script>
+</body>
+</html>
