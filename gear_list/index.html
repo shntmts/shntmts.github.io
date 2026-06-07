@@ -1,1 +1,452 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>登山ギア参考リスト</title>
+  <meta name="description" content="登山を始める方向けのギア参考リスト。実際に使用している登山ギアをカテゴリ別に整理。">
+  <style>
+    :root {
+      --bg: #f6f3ea;
+      --paper: #fffdf7;
+      --ink: #1f2a24;
+      --muted: #617067;
+      --green: #2f5f3b;
+      --green-dark: #24492d;
+      --green-soft: #e6efe4;
+      --line: #d6ddcf;
+      --amber: #8a5a18;
+      --amber-soft: #fff2d8;
+      --shadow: 0 20px 50px rgba(32, 55, 39, 0.12);
+    }
 
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(124, 163, 116, 0.22), transparent 32rem),
+        radial-gradient(circle at 90% 8%, rgba(99, 137, 164, 0.16), transparent 28rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      line-height: 1.75;
+    }
+
+    a {
+      color: var(--green-dark);
+      font-weight: 800;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(47, 95, 59, 0.35);
+    }
+
+    a:hover { border-bottom-color: var(--green-dark); }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 40px 20px 56px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(255,253,246,0.94));
+      border: 1px solid rgba(47, 95, 59, 0.18);
+      box-shadow: var(--shadow);
+      padding: 44px 42px;
+    }
+
+    .hero::before {
+      content: "△";
+      position: absolute;
+      right: 44px;
+      top: 16px;
+      font-size: 180px;
+      line-height: 1;
+      color: rgba(47, 95, 59, 0.07);
+      transform: rotate(-4deg);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--green-dark);
+      background: var(--green-soft);
+      border: 1px solid rgba(47,95,59,.15);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .04em;
+    }
+
+    h1 {
+      margin: 18px 0 12px;
+      font-size: clamp(34px, 6vw, 64px);
+      line-height: 1.12;
+      letter-spacing: .03em;
+      color: var(--green-dark);
+    }
+
+    .lead {
+      max-width: 880px;
+      margin: 0;
+      color: #334039;
+      font-size: 18px;
+      font-weight: 650;
+    }
+
+    .policy {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 24px 0 0;
+    }
+
+    .policy-card {
+      background: rgba(255, 255, 255, .72);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px 16px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .policy-card strong {
+      display: block;
+      color: var(--green-dark);
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+
+    .section {
+      margin-top: 28px;
+      background: var(--paper);
+      border: 1px solid rgba(47, 95, 59, 0.18);
+      border-radius: 24px;
+      box-shadow: 0 14px 36px rgba(32, 55, 39, 0.08);
+      overflow: hidden;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px 26px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(90deg, rgba(47, 95, 59, .12), rgba(47, 95, 59, .04));
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: 24px;
+      color: var(--green-dark);
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .table-wrap { width: 100%; overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 960px;
+    }
+
+    th, td {
+      padding: 18px;
+      vertical-align: top;
+      border-bottom: 1px solid var(--line);
+    }
+
+    th {
+      background: var(--green-dark);
+      color: #fff;
+      text-align: left;
+      font-size: 14px;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
+
+    td {
+      background: rgba(255,255,255,.48);
+      font-size: 15px;
+    }
+
+    tr:nth-child(even) td { background: rgba(230,239,228,.35); }
+    tr:last-child td { border-bottom: none; }
+
+    .category-line {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-weight: 850;
+      color: var(--green-dark);
+      white-space: nowrap;
+    }
+
+    .icon { font-size: 22px; line-height: 1; }
+
+    .badge {
+      display: inline-flex;
+      margin-top: 8px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .priority { background: var(--green-soft); color: var(--green-dark); }
+    .caution { background: var(--amber-soft); color: var(--amber); }
+
+    .notes {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 22px;
+    }
+
+    .note-card {
+      background: var(--paper);
+      border: 1px solid rgba(47, 95, 59, 0.18);
+      border-radius: 24px;
+      box-shadow: 0 14px 36px rgba(32, 55, 39, 0.08);
+      padding: 26px;
+    }
+
+    .note-card h2 {
+      margin: 0 0 12px;
+      color: var(--green-dark);
+      font-size: 24px;
+    }
+
+    .note-card ul { margin: 0; padding-left: 1.2em; }
+    .note-card li { margin: 8px 0; }
+
+    .mini-grid { display: grid; gap: 12px; }
+
+    .mini {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(230,239,228,.5);
+      border: 1px solid var(--line);
+    }
+
+    .mini strong {
+      color: var(--green-dark);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    footer {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 820px) {
+      .page { padding: 22px 12px 40px; }
+      .hero { padding: 30px 22px; border-radius: 22px; }
+      .lead { font-size: 16px; }
+      .policy { grid-template-columns: 1fr; }
+      .section-header { display: block; padding: 20px; }
+      .section-header h2 { margin-bottom: 8px; }
+      .table-wrap { overflow: visible; }
+      table, thead, tbody, th, td, tr { display: block; min-width: 0; }
+      thead { display: none; }
+      tr {
+        margin: 14px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        overflow: hidden;
+        background: #fff;
+      }
+      td {
+        display: grid;
+        grid-template-columns: 8.5em 1fr;
+        gap: 12px;
+        border-bottom: 1px solid var(--line);
+        padding: 14px 16px;
+        background: #fff !important;
+      }
+      td::before {
+        content: attr(data-label);
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 850;
+      }
+      td:last-child { border-bottom: none; }
+      .category-line { white-space: normal; }
+      .notes { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { max-width: none; padding: 0; }
+      .hero, .section, .note-card { box-shadow: none; }
+      a { color: inherit; border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <span class="eyebrow">⛰ 軽量・UL寄り構成</span>
+      <h1>登山ギア参考リスト</h1>
+      <p class="lead">
+        登山を始める方向けに、実際に使っているギアをカテゴリ別にまとめました。
+        全体的に軽量・UL寄りの構成なので、最初に全部そろえるというより、
+        登山スタイルに合うものを参考にしてください。
+      </p>
+      <div class="policy" aria-label="リンク方針">
+        <div class="policy-card"><strong>リンク方針 1</strong>石井スポーツECに取扱があれば、石井スポーツECリンクを優先。</div>
+        <div class="policy-card"><strong>リンク方針 2</strong>山と道製品は、山と道公式ECリンクで代用。</div>
+        <div class="policy-card"><strong>リンク方針 3</strong>モンベル製品は、モンベル公式ECリンクで代用。</div>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>ギア一覧</h2>
+        <p>購入先のテキストをクリックすると、各ECページを開けます。</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>カテゴリ</th>
+              <th>製品</th>
+              <th>購入先</th>
+              <th>メモ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="カテゴリ">
+                <div class="category-line"><span class="icon" aria-hidden="true">🥾</span><span>登山靴</span></div>
+                <span class="badge priority">必須寄り</span>
+              </td>
+              <td data-label="製品"><strong>ALTRA / OLYMPUS 6</strong></td>
+              <td data-label="購入先"><a href="https://www.yodobashi.com/product/100000001008506466/" target="_blank" rel="noopener noreferrer">石井スポーツEC系</a></td>
+              <td data-label="メモ">厚底クッション、0mmドロップ、Vibram Megagripのトレイルシューズ。軽量装備・低山・整備された登山道向き。重い荷物や岩場メインなら慎重に選ぶのがおすすめ。<br><span class="badge caution">一般的な登山靴ではなくトレイルシューズ寄り</span></td>
+            </tr>
+            <tr>
+              <td data-label="カテゴリ">
+                <div class="category-line"><span class="icon" aria-hidden="true">🎒</span><span>ザック</span></div>
+                <span class="badge priority">必須</span>
+              </td>
+              <td data-label="製品"><strong>山と道 / MINI2</strong></td>
+              <td data-label="購入先"><a href="https://www.yamatomichi.com/products/mini2" target="_blank" rel="noopener noreferrer">山と道公式EC</a></td>
+              <td data-label="メモ">軽量志向のULバックパック。1〜2泊程度のUL装備向け。荷物を軽く・小さくまとめる前提のザックなので、初心者はパッキングに少し慣れが必要。<br><span class="badge caution">UL装備・軽量パッキング前提</span></td>
+            </tr>
+            <tr>
+              <td data-label="カテゴリ">
+                <div class="category-line"><span class="icon" aria-hidden="true">👕</span><span>ベースレイヤー上</span></div>
+                <span class="badge priority">必須</span>
+              </td>
+              <td data-label="製品"><strong>山と道 / DF Mesh Merino Sleeveless</strong></td>
+              <td data-label="購入先"><a href="https://www.yamatomichi.com/products/df-mesh-merino-sleeveless-m" target="_blank" rel="noopener noreferrer">山と道公式EC</a></td>
+              <td data-label="メモ">汗抜け・肌離れ重視のベースレイヤー。ノースリーブなので、肩擦れ・日焼け・寒さ対策は別途必要。<br><span class="badge caution">肩擦れ・日焼け対策は別途必要</span></td>
+            </tr>
+            <tr>
+              <td data-label="カテゴリ">
+                <div class="category-line"><span class="icon" aria-hidden="true">👔</span><span>ウェア上</span></div>
+                <span class="badge priority">推奨</span>
+              </td>
+              <td data-label="製品"><strong>山と道 / Bamboo Shirt</strong></td>
+              <td data-label="購入先"><a href="https://www.yamatomichi.com/products/bamboo-shirt" target="_blank" rel="noopener noreferrer">山と道公式EC</a></td>
+              <td data-label="メモ">山でも街でも使いやすいシャツ。バンブーとポリエステル混紡。速乾特化ではないので、真夏の高発汗時は好みが分かれる。<br><span class="badge caution">高発汗時は速乾特化ウェアと比較</span></td>
+            </tr>
+            <tr>
+              <td data-label="カテゴリ">
+                <div class="category-line"><span class="icon" aria-hidden="true">🩳</span><span>ウェア下</span></div>
+                <span class="badge priority">推奨</span>
+              </td>
+              <td data-label="製品"><strong>山と道 / 5-Pocket Long Shorts</strong></td>
+              <td data-label="購入先"><a href="https://www.yamatomichi.com/products/5-pocket-long-shorts" target="_blank" rel="noopener noreferrer">山と道公式EC</a></td>
+              <td data-label="メモ">丈長めのショーツ。軽量・速乾性・耐久性があり歩きやすい。虫・擦り傷・日焼けが気になる山ではロングパンツの方が無難。<br><span class="badge caution">虫・擦り傷・日焼けに注意</span></td>
+            </tr>
+            <tr>
+              <td data-label="カテゴリ">
+                <div class="category-line"><span class="icon" aria-hidden="true">👖</span><span>ウェア下・小屋内用</span></div>
+                <span class="badge priority">任意</span>
+              </td>
+              <td data-label="製品"><strong>山と道 / 5-Pocket Pants</strong></td>
+              <td data-label="購入先"><a href="https://www.yamatomichi.com/products/5-pocket-pants-m" target="_blank" rel="noopener noreferrer">山と道公式EC</a></td>
+              <td data-label="メモ">小屋内のリラックス用にも、行動用にも使えるパンツ。着替え兼普段使いもしやすい。<br><span class="badge caution">小屋用だけならやや贅沢</span></td>
+            </tr>
+            <tr>
+              <td data-label="カテゴリ">
+                <div class="category-line"><span class="icon" aria-hidden="true">🌧️</span><span>レインウェア上</span></div>
+                <span class="badge priority">必須</span>
+              </td>
+              <td data-label="製品"><strong>山と道 / UL All-weather Hoody</strong></td>
+              <td data-label="購入先"><a href="https://www.yamatomichi.com/products/ul-all-weather-hoody" target="_blank" rel="noopener noreferrer">山と道公式EC</a></td>
+              <td data-label="メモ">かなり軽量なレインシェル。軽さと通気性が強みだが、一般的な登山用レインウェアよりUL寄りで、初心者にはやや使いこなしが必要。<br><span class="badge caution">UL寄りで使いこなし前提</span></td>
+            </tr>
+            <tr>
+              <td data-label="カテゴリ">
+                <div class="category-line"><span class="icon" aria-hidden="true">☔</span><span>レインウェア下</span></div>
+                <span class="badge priority">必須</span>
+              </td>
+              <td data-label="製品"><strong>mont-bell / スーパードライテック U.L.レインパンツ</strong></td>
+              <td data-label="購入先"><a href="https://webshop.montbell.jp/sp/goods/disp_fo.php?product_id=8080923" target="_blank" rel="noopener noreferrer">モンベル公式EC</a></td>
+              <td data-label="メモ">軽量レインパンツ。雨天時だけでなく、防風・防寒の補助にも使える。初心者にもかなり重要な装備。<br><span class="badge caution">サイズ・通常品/アウトレット表記を確認</span></td>
+            </tr>
+            <tr>
+              <td data-label="カテゴリ">
+                <div class="category-line"><span class="icon" aria-hidden="true">🧥</span><span>防寒着上</span></div>
+                <span class="badge priority">必須寄り</span>
+              </td>
+              <td data-label="製品"><strong>Peak Performance / ヘリウムジャケット</strong></td>
+              <td data-label="購入先"><a href="https://www.yodobashi.com/product/100000001008673374/" target="_blank" rel="noopener noreferrer">石井スポーツEC系</a></td>
+              <td data-label="メモ">休憩時・山頂・小屋などで使う保温着。ヘリウム系は複数モデルがあるため、購入時は型番確認がおすすめ。<br><span class="badge caution">フード有無・型番違いに注意</span></td>
+            </tr>
+            <tr>
+              <td data-label="カテゴリ">
+                <div class="category-line"><span class="icon" aria-hidden="true">🧦</span><span>防寒着下</span></div>
+                <span class="badge priority">推奨</span>
+              </td>
+              <td data-label="製品"><strong>山と道 / Light Alpha Tights</strong></td>
+              <td data-label="購入先"><a href="https://www.yamatomichi.com/products/light-alpha-tights" target="_blank" rel="noopener noreferrer">山と道公式EC</a></td>
+              <td data-label="メモ">小屋泊・テント泊・休憩時・就寝時の保温用。ショーツやパンツの下に組み合わせて使う保温レイヤー。<br><span class="badge caution">単体の防風パンツではない</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="notes" aria-label="補足">
+      <div class="note-card">
+        <h2>補足</h2>
+        <ul>
+          <li>まず優先するなら、靴・レインウェア・ザック・ヘッドライト・地図アプリ・防寒着。</li>
+          <li>靴とザックは体との相性が大きいので、できれば店頭で試着・フィッティング推奨。</li>
+          <li>山と道やUL系ギアは、軽くて快適な反面、荷物の減らし方やレイヤリングに慣れているほど活きる。</li>
+        </ul>
+      </div>
+      <div class="note-card">
+        <h2>初心者向けの見方</h2>
+        <div class="mini-grid">
+          <div class="mini"><strong>必須装備から優先</strong>まずは安全に直結する靴・雨具・防寒・ライト類を優先。</div>
+          <div class="mini"><strong>ULギアは使い方前提</strong>軽さは魅力だが、耐久性・防寒性・パッキングの工夫もセットで考える。</div>
+          <div class="mini"><strong>体に触れる道具は試着推奨</strong>靴、ザック、レイヤー類はサイズ感で快適性が大きく変わる。</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>※ 在庫・価格・モデル名は変更されることがあります。購入前に公式ページや店頭で最新情報を確認してください。</footer>
+  </main>
+</body>
+</html>
